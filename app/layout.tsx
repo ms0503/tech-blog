@@ -31,7 +31,7 @@ const NotoSansMono = Noto_Sans_Mono({
 export const metadata: Metadata = {
     authors: {
         name: 'Sora Tonami',
-        url: 'https://ms0503-tech-blog.vercel.app'
+        url: 'https://tech-blog-ms0503.vercel.app'
     },
     creator: 'Sora Tonami',
     description: 'STM32系・Web系の技術ブログ',
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
         }
     ],
     manifest: '/manifest.webmanifest',
-    metadataBase: new URL('https://ms0503-tech-blog.vercel.app'),
+    metadataBase: new URL('https://tech-blog-ms0503.vercel.app'),
     openGraph: {
         description: 'STM32系・Web系の技術ブログ',
         siteName: 'ms0503 Tech Blog',

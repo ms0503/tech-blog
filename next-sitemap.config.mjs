@@ -19,7 +19,7 @@ const config = {
     priority: 0.7,
     robotsTxtOptions: {
         additionalSitemaps: [
-            'https://ms0503-tech-blog.vercel.app/blog-sitemap.xml'
+            'https://tech-blog-ms0503.vercel.app/blog-sitemap.xml'
         ],
         includeNonIndexSitemaps: false,
         policies: [
@@ -29,7 +29,7 @@ const config = {
             }
         ]
     },
-    siteUrl: 'https://ms0503-tech-blog.vercel.app',
+    siteUrl: 'https://tech-blog-ms0503.vercel.app',
     sitemapBaseFileName: 'sitemap',
     sitemapSize: 5000,
     sourceDir: '.next'
