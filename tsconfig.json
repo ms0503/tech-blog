@@ -1,27 +1,108 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
+    "compilerOptions": {
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "allowUmdGlobalAccess": true,
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+        "assumeChangesOnlyAffectDirectDependencies": false,
+        "checkJs": true,
+        "declaration": true,
+        "declarationMap": true,
+        "disableReferencedProjectLoad": false,
+        "disableSizeLimit": true,
+        "disableSolutionSearching": false,
+        "disableSourceOfProjectReferenceRedirect": false,
+        "downlevelIteration": false,
+        "emitBOM": false,
+        "emitDeclarationOnly": false,
+        "emitDecoratorMetadata": true,
+        "esModuleInterop": true,
+        "exactOptionalPropertyTypes": false,
+        "experimentalDecorators": true,
+        "extendedDiagnostics": false,
+        "forceConsistentCasingInFileNames": true,
+        "importHelpers": true,
+        "importsNotUsedAsValues": "remove",
+        "incremental": true,
+        "inlineSourceMap": false,
+        "inlineSources": false,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "keyofStringsOnly": false,
+        "lib": [
+            "DOM",
+            "DOM.Iterable",
+            "ESNext"
+        ],
+        "listEmittedFiles": false,
+        "listFiles": false,
+        "maxNodeModuleJsDepth": 0,
+        "module": "ESNext",
+        "moduleResolution": "Bundler",
+        "newLine": "lf",
+        "noEmit": true,
+        "noEmitHelpers": true,
+        "noEmitOnError": true,
+        "noErrorTruncation": false,
+        "noFallthroughCasesInSwitch": false,
+        "noImplicitAny": true,
+        "noImplicitOverride": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noLib": false,
+        "noPropertyAccessFromIndexSignature": true,
+        "noResolve": false,
+        "noStrictGenericChecks": false,
+        "noUncheckedIndexedAccess": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "paths": {
+            "@/*": [
+                "./*"
+            ]
+        },
+        "plugins": [
+            {
+                "name": "next"
+            },
+            {
+                "name": "typescript-eslint-language-service"
+            }
+        ],
+        "preserveConstEnums": true,
+        "preserveSymlinks": false,
+        "preserveValueImports": false,
+        "preserveWatchOutput": false,
+        "pretty": true,
+        "removeComments": true,
+        "resolveJsonModule": true,
+        "skipDefaultLibCheck": true,
+        "skipLibCheck": true,
+        "sourceMap": true,
+        "strict": true,
+        "strictBindCallApply": true,
+        "strictFunctionTypes": true,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true,
+        "stripInternal": false,
+        "suppressExcessPropertyErrors": false,
+        "suppressImplicitAnyIndexErrors": false,
+        "target": "ESNext",
+        "traceResolution": false,
+        "tsBuildInfoFile": ".tsbuildinfo",
+        "useDefineForClassFields": false,
+        "useUnknownInCatchVariables": false
+    },
+    "exclude": [
+        "node_modules"
     ],
-    "paths": {
-      "@/*": ["./*"]
-    }
-  },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+    "include": [
+        ".next/types/**/*.ts",
+        "app/**/*.ts",
+        "app/**/*.tsx",
+        "lib/**/*.ts",
+        "lib/**/*.tsx",
+        "next-env.d.ts"
+    ]
 }

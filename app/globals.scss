@@ -1,0 +1,114 @@
+@charset "UTF-8";
+
+@use "sass:meta";
+
+:root {
+    --max-width: 1100px;
+    --border-radius: 12px;
+    --font-mono: var(--noto-sans-mono), 'Noto Sans Mono', ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono', 'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro', 'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+    --foreground-color: 0deg, 0%, 10%;
+    --background-start-color: 0deg, 0%, 85%;
+    --background-end-color: 0deg, 0%, 90%;
+    --primary-glow: conic-gradient(
+        from 180deg at 50% 50%,
+        hsla(200deg, 100%, 55%, 20%) 0deg,
+        hsla(210deg, 100%, 50%, 20%) 55deg,
+        hsla(195deg, 100%, 65%, 20%) 120deg,
+        hsla(215deg, 100%, 50%, 20%) 160deg,
+        transparent 360deg
+    );
+    --secondary-glow: radial-gradient(
+        hsla(0deg, 0%, 90%, 100%),
+        hsla(0deg, 0%, 90%, 0%)
+    );
+    --tile-start-color: 205deg, 45%, 95%;
+    --tile-end-color: 190deg, 10%, 90%;
+    --tile-border: conic-gradient(
+        hsla(0deg, 0%, 0%, 50%),
+        hsla(0deg, 0%, 0%, 25%),
+        hsla(0deg, 0%, 0%, 18.75%),
+        hsla(0deg, 0%, 0%, 12.5%),
+        hsla(0deg, 0%, 0%, 6.25%),
+        hsla(0deg, 0%, 0%, 6.25%),
+        hsla(0deg, 0%, 0%, 50%)
+    );
+    --callout-color: 200deg, 10%, 92.5%;
+    --callout-border-color: 195deg, 2.5%, 67.5%;
+    --card-color: 202.5deg, 5.5%, 72.5%;
+    --card-border-color: 195deg, 0%, 50%;
+    @media (prefers-color-scheme: dark) {
+        --foreground-color: 0deg, 0%, 90%;
+        --background-start-color: 0deg, 0%, 10%;
+        --background-end-color: 0deg, 0%, 10%;
+        --primary-glow: radial-gradient(
+            hsla(225deg, 100%, 50%, 40%),
+            hsla(225deg, 100%, 50%, 0%)
+        );
+        --secondary-glow: linear-gradient(
+            to bottom right,
+            hsla(225deg, 100%, 50%, 0%),
+            hsla(225deg, 100%, 50%, 0%),
+            hsla(225deg, 100%, 50%, 30%)
+        );
+        --tile-start-color: 225deg, 90%, 10%;
+        --tile-end-color: 230deg, 80%, 5%;
+        --tile-border: conic-gradient(
+            hsla(0deg, 0%, 100%, 50%),
+            hsla(0deg, 0%, 100%, 25%),
+            hsla(0deg, 0%, 100%, 18.75%),
+            hsla(0deg, 0%, 100%, 12.5%),
+            hsla(0deg, 0%, 100%, 6.25%),
+            hsla(0deg, 0%, 100%, 6.25%),
+            hsla(0deg, 0%, 100%, 50%)
+        );
+        --callout-color: 0deg, 0%, 7.5%;
+        --callout-border-color: 0deg, 0%, 42.5%;
+        --card-color: 0deg, 0%, 40%;
+        --card-border-color: 0deg, 0%, 77.5%;
+    }
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+:is(html, body) {
+    max-width: 100vw;
+    overflow-x: hidden;
+
+    &:where(html) {
+        @media (prefers-color-scheme: light) {
+            @include meta.load-css("../node_modules/highlight.js/styles/github.css");
+            color-scheme: light;
+        }
+        @media (prefers-color-scheme: dark) {
+            @include meta.load-css("../node_modules/highlight.js/styles/github-dark.css");
+            color-scheme: dark;
+        }
+    }
+
+    &:where(body) {
+        color: hsl(var(--foreground-color));
+        background: linear-gradient(
+                to bottom,
+                transparent,
+                hsl(var(--background-end-color))
+        ) hsl(var(--background-start-color));
+    }
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6rem;
+    min-height: 100vh;
+}
