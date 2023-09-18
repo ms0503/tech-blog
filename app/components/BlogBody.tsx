@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import rehypeParse from 'rehype-parse';
-import rehypeReact, { Options } from 'rehype-react';
-import styles from './BlogBody.module.scss'
+import rehypeReact from 'rehype-react';
+import styles from './BlogBody.module.scss';
 import { Fragment, JSX, createElement } from 'react';
 import { Image } from '@/app/components';
 import { Stack } from '@/lib/client-react-bootstrap';
@@ -34,6 +34,7 @@ export async function BlogBody({ body }: Props): Promise<JSX.Element> {
                 <>
                     {unified().use(rehypeParse, {
                         fragment: true
+                        // @ts-ignore
                     }).use(rehypeReact, {
                         Fragment,
                         components: {
@@ -41,7 +42,7 @@ export async function BlogBody({ body }: Props): Promise<JSX.Element> {
                             img: Image
                         },
                         createElement
-                    } as Options).processSync(await processer(body, {
+                    }).processSync(await processer(body, {
                         code: {
                             enabled: true
                         },

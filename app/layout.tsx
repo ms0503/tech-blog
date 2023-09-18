@@ -109,15 +109,13 @@ export default function RootLayout({ children }: Props): JSX.Element {
                     <Row><Col><main>{children}</main></Col></Row>
                     <Row><Col><Footer /></Col></Row>
                 </Container>
-                <Script async id="bs-auto-theme" strategy="beforeInteractive" dangerouslySetInnerHTML={
-                    {
-                        __html: `
-                            const html = document.documentElement;
-                            const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                            if(isDarkMode) html.setAttribute('data-bs-theme', 'dark');
-                        `
-                    }
-                } />
+                <Script async id="bs-auto-theme" strategy="afterInteractive" dangerouslySetInnerHTML={{
+                    __html: `
+                        const html = document.documentElement;
+                        const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                        if(isDarkMode) html.setAttribute('data-bs-theme', 'dark');
+                    `
+                }} />
             </body>
         </html>
     );
