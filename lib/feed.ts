@@ -30,7 +30,7 @@ export async function generateRssXml(): Promise<string> {
 }
 
 async function generateFeed(): Promise<Feed> {
-    const baseUrl: string = 'https://tech-blog-ms0503.vercel.app';
+    const baseUrl: string = process.env['BASE_URL']!;
     const date: Date = new Date();
     const author: Author = {
         email: 'ms0503@outlook.com',

@@ -31,7 +31,7 @@ const NotoSansMono = Noto_Sans_Mono({
 export const metadata: Metadata = {
     authors: {
         name: 'Sora Tonami',
-        url: 'https://tech-blog-ms0503.vercel.app'
+        url: process.env['BASE_URL']
     },
     creator: 'Sora Tonami',
     description: 'STM32系・Web系の技術ブログ',
@@ -43,27 +43,7 @@ export const metadata: Metadata = {
         url: false
     },
     generator: 'Next.js',
-    icons: [
-        {
-            rel: 'icon',
-            sizes: '32x32',
-            type: 'image/vnd.microsoft.icon',
-            url: '/favicon.ico'
-        },
-        {
-            rel: 'icon',
-            type: 'image/svg+xml',
-            url: '/logo.svg'
-        },
-        {
-            rel: 'apple-touch-icon',
-            sizes: '180x180',
-            type: 'image/png',
-            url: '/apple-touch-icon.png'
-        }
-    ],
-    manifest: '/manifest.webmanifest',
-    metadataBase: new URL('https://tech-blog-ms0503.vercel.app'),
+    metadataBase: new URL(process.env['BASE_URL']!),
     openGraph: {
         description: 'STM32系・Web系の技術ブログ',
         siteName: 'ms0503 Tech Blog',

@@ -4,7 +4,7 @@ import { Blog, microCMSClient } from '@/lib/microcms-client';
 import type { MetadataRoute } from 'next';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl: string = 'https://tech-blog-ms0503.vercel.app';
+    const baseUrl: string = process.env['BASE_URL']!;
     const staticPaths: MetadataRoute.Sitemap = [
         {
             changeFrequency: 'monthly',
