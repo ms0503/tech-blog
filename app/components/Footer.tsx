@@ -1,6 +1,6 @@
 'use strict';
 
-import styles from './Footer.module.scss';
+import styles from '@/app/components/Footer.module.scss';
 import type { JSX } from 'react';
 
 export function Footer(): JSX.Element {

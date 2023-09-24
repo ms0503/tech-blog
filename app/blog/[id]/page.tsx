@@ -1,12 +1,18 @@
 'use strict';
 
+import Link from 'next/link';
+import pageStyles from '@/app/page.module.scss';
+import rehypeParse from 'rehype-parse';
+import rehypeReact from 'rehype-react';
 import styles from './Blog.module.scss';
 import { ArrowUpCircle, Box, FileEarmarkPlus, Tags } from 'react-bootstrap-icons';
 import { Blog, microCMSClient } from '@/lib/microcms-client';
-import { BlogBody } from '@/app/components';
-import { Col, Container, Row } from '@/lib/client-react-bootstrap';
+import { Col, Container, Row, Stack } from '@/lib/client-react-bootstrap';
+import { Fragment, JSX, createElement } from 'react';
+import { Image } from '@/app/components';
+import { createTableOfContents, processer } from 'microcms-richedit-processer';
 import { iso2datetime } from '@/lib/time';
-import type { JSX } from 'react';
+import { unified } from 'unified';
 import type { Metadata, ResolvingMetadata } from 'next';
 
 type Params = {
@@ -22,6 +28,7 @@ export default async function BlogPage({ params: { id } }: Props): Promise<JSX.E
         contentId: id,
         endpoint: 'blogs'
     });
+    const tableOfContents = createTableOfContents(post.content);
     return (
         <>
             <h1>{post.title}</h1>
@@ -35,7 +42,43 @@ export default async function BlogPage({ params: { id } }: Props): Promise<JSX.E
                     <Col as="small" title="タグ"><Tags /> {post.tags.length === 0 ? 'なし' : post.tags.map(tag => tag.name).join(', ')}</Col>
                 </Row>
             </Container>
-            <BlogBody body={post.content} />
+            {tableOfContents.length !== 0 && (
+                <>
+                    <span className="h4">目次</span>
+                    <Stack gap={0}>
+                        {tableOfContents.map(header => (
+                            <div key={header.id}>
+                                {header.text}
+                            </div>
+                        ))}
+                    </Stack>
+                </>
+            )}
+            <div className={pageStyles['contents']}>
+                <>
+                    {unified().use(rehypeParse, {
+                        fragment: true
+                        // @ts-ignore
+                    }).use(rehypeReact, {
+                        Fragment,
+                        components: {
+                            a: Link,
+                            img: Image
+                        },
+                        createElement
+                    }).processSync(await processer(post.content, {
+                        code: {
+                            enabled: true
+                        },
+                        iframe: {
+                            enabled: true
+                        },
+                        img: {
+                            enabled: true
+                        }
+                    })).result}
+                </>
+            </div>
         </>
     );
 }

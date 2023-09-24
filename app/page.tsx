@@ -1,5 +1,6 @@
 'use strict';
 
+import styles from '@/app/page.module.scss';
 import type { JSX } from 'react';
 import type { Metadata } from 'next';
 
@@ -17,10 +18,12 @@ export default function Home(): JSX.Element {
     return (
         <>
             <h1>ms0503 Tech Blog</h1>
-            <p>
-                私が高専ロボコンで使った技術とか、Web開発とかに関する情報をまとめるような、そんなブログのような何かです。<br />
-                ロボコンならSTM32のLLだったりCMakeやGit、WebならNext.js辺りを使ってるので書いていけたらいいなぁ。
-            </p>
+            <div className={styles['contents']}>
+                <p>
+                    私が高専ロボコンで使った技術とか、Web開発とかに関する情報をまとめるような、そんなブログのような何かです。<br />
+                    ロボコンならSTM32のLLだったりCMakeやGit、WebならNext.js辺りを使ってるので書いていけたらいいなぁ。
+                </p>
+            </div>
         </>
     );
 }
