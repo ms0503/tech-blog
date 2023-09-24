@@ -9,10 +9,12 @@ import { iso2datetime } from '@/lib/time';
 import type { JSX } from 'react';
 import type { Metadata, ResolvingMetadata } from 'next';
 
+type Params = {
+    id: string
+};
+
 type Props = {
-    params: {
-        id: string
-    }
+    params: Params
 };
 
 export default async function BlogPage({ params: { id } }: Props): Promise<JSX.Element> {
@@ -54,4 +56,13 @@ export async function generateMetadata({ params: { id } }: Props, parent: Resolv
         },
         title
     };
+}
+
+export async function generateStaticParams(): Promise<Params[]> {
+    const blog: Blog[] = (await microCMSClient.getList<Blog>({
+        endpoint: 'blogs'
+    })).contents;
+    return blog.map(post => ({
+        id: post.id
+    }));
 }

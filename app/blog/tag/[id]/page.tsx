@@ -7,10 +7,12 @@ import { iso2datetime } from '@/lib/time';
 import type { JSX } from 'react';
 import type { Metadata } from 'next';
 
+type Params = {
+    id: string
+};
+
 type Props = {
-    params: {
-        id: string
-    }
+    params: Params
 };
 
 export default async function TagPage({ params: { id } }: Props): Promise<JSX.Element> {
@@ -54,4 +56,13 @@ export async function generateMetadata({ params: { id } }: Props): Promise<Metad
         },
         title: `「${name}」カテゴリー`
     };
+}
+
+export async function generateStaticParams(): Promise<Params[]> {
+    const tags: Tag[] = (await microCMSClient.getList<Tag>({
+        endpoint: 'tags'
+    })).contents;
+    return tags.map(tag => ({
+        id: tag.id
+    }));
 }
