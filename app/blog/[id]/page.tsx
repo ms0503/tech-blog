@@ -43,16 +43,17 @@ export default async function BlogPage({ params: { id } }: Props): Promise<JSX.E
                 </Row>
             </Container>
             {tableOfContents.length !== 0 && (
-                <>
-                    <span className="h4">目次</span>
-                    <Stack gap={0}>
+                <div className={styles['table-of-contents-container']}>
+                    <div className={`h4 ${styles['table-of-contents-title']}`}>目次</div>
+                    <hr />
+                    <Stack className={styles['table-of-contents']} as="ol" gap={0}>
                         {tableOfContents.map(header => (
-                            <div key={header.id}>
+                            <li key={header.id}>
                                 {header.text}
-                            </div>
+                            </li>
                         ))}
                     </Stack>
-                </>
+                </div>
             )}
             <div className={pageStyles['contents']}>
                 <>

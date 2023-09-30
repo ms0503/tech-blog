@@ -4,3 +4,21 @@
     justify-content: center;
     align-items: center;
 }
+
+.table-of-contents-container {
+    border: solid 3px hsl(0deg, 0%, 30%);
+    min-width: 25%;
+    margin: 1rem;
+    @media (prefers-color-scheme: dark) {
+        border-color: hsl(0deg, 0%, 50%);
+    }
+
+    .table-of-contents-title {
+        margin: 1rem;
+        text-align: center;
+    }
+
+    .table-of-contents {
+        margin: 1rem;
+    }
+}
