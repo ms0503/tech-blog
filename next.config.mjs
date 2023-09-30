@@ -10,11 +10,11 @@ const nextConfig = {
         ]
     },
     experimental: {
-        appDir: true,
         esmExternals: true,
         optimizeCss: true,
         serverComponentsExternalPackages: [
-            'react-bootstrap'
+            'react-bootstrap',
+            'react-bootstrap-icons'
         ]
     },
     generateEtags: false,
