@@ -4,7 +4,7 @@
 import NextImage, { ImageLoaderProps, ImageProps } from 'next/image';
 import { DetailedHTMLProps, JSX, SourceHTMLAttributes, useContext, useMemo } from 'react';
 import { ImageConfigComplete, imageConfigDefault } from 'next/dist/shared/lib/image-config';
-import { ImageConfigContext } from 'next/dist/shared/lib/image-config-context';
+import { ImageConfigContext } from 'next/dist/shared/lib/image-config-context.shared-runtime';
 
 type ArtDirective = {
     src: string,
