@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+$max-width: 1100px;
+$border-radius: 12px;
+$font-mono: var(--noto-sans-mono), "Noto Sans Mono", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+$font-sans: "Helvetica Neue", "Helvetica", "Arial", var(--noto-sans-jp), "Noto Sans CJK JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+$font-serif: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
+$foreground-color-light: 0deg, 0%, 10%;
+$foreground-color-dark: 0deg, 0%, 90%;
+$background-color-light: 0deg, 0%, 85%;
+$background-color-dark: 0deg, 0%, 10%;
+
+:root {
+    --max-width: #{$max-width};
+    --border-radius: #{$border-radius};
+    --font-mono: #{$font-mono};
+    --font-sans: #{$font-sans};
+    --font-serif: #{$font-serif};
+    --foreground-color: #{$foreground-color-light};
+    --background-color: #{$background-color-light};
+    @media (prefers-color-scheme: dark) {
+        --foreground-color: #{$foreground-color-dark};
+        --background-color: #{$background-color-dark};
+    }
+}

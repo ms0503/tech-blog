@@ -1,6 +1,8 @@
 @charset "UTF-8";
 
 .header {
+    margin: 0 calc(var(--bs-gutter-x) * -0.5);
+
     a {
         &:is(:active, :focus, :hover) {
             text-decoration: inherit;
