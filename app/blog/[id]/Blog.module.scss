@@ -49,6 +49,7 @@ a:has(> .blog-entry):is(:active, :focus, :hover) {
             margin: 0.5rem;
 
             &.h2 {
+                margin-left: 0;
             }
 
             &.h3 {
