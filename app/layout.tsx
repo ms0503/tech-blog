@@ -84,9 +84,9 @@ export default function RootLayout({ children }: Props): JSX.Element {
     return (
         <html lang="ja" prefix="og: https://ogp.me/ns#" className={`${NotoSansJP.variable} ${NotoSansMono.variable}`} data-bs-theme="light">
             <body>
-                <Container fluid>
+                <Container fluid className="page-container">
                     <Row><Col><Header /></Col></Row>
-                    <Row><Col><main>{children}</main></Col></Row>
+                    <Row className="page-main"><Col><main>{children}</main></Col></Row>
                     <Row><Col><Footer /></Col></Row>
                 </Container>
                 <Script async id="bs-auto-theme" strategy="afterInteractive" dangerouslySetInnerHTML={{
