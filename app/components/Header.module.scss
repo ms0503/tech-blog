@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.header {
+    a {
+        &:is(:active, :focus, :hover) {
+            text-decoration: inherit;
+        }
+    }
+}

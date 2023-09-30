@@ -28,7 +28,9 @@ export default async function BlogPage({ params: { id } }: Props): Promise<JSX.E
         contentId: id,
         endpoint: 'blogs'
     });
-    const tableOfContents = createTableOfContents(post.content);
+    const tableOfContents = createTableOfContents(post.content, {
+        tags: 'h2, h3, h4, h5'
+    });
     return (
         <>
             <h1>{post.title}</h1>
@@ -46,12 +48,8 @@ export default async function BlogPage({ params: { id } }: Props): Promise<JSX.E
                 <div className={styles['table-of-contents-container']}>
                     <div className={`h4 ${styles['table-of-contents-title']}`}>目次</div>
                     <hr />
-                    <Stack className={styles['table-of-contents']} as="ol" gap={0}>
-                        {tableOfContents.map(header => (
-                            <li key={header.id}>
-                                {header.text}
-                            </li>
-                        ))}
+                    <Stack className={styles['table-of-contents']} as="ul" gap={0}>
+                        {tableOfContents.map(header => <li className={styles[header.name]} key={header.id}><a href={`#${header.id}`}>{header.text}</a></li>)}
                     </Stack>
                 </div>
             )}

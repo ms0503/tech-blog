@@ -20,5 +20,22 @@
 
     .table-of-contents {
         margin: 1rem;
+
+        li {
+            &.h2 {
+            }
+
+            &.h3 {
+                margin-left: 1rem;
+            }
+
+            &.h4 {
+                margin-left: 2rem;
+            }
+
+            &.h5 {
+                margin-left: 3rem;
+            }
+        }
     }
 }

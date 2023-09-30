@@ -1,11 +1,12 @@
 'use strict';
 
+import styles from '@/app/components/Header.module.scss';
 import { Container, Nav, NavDropdown, NavDropdownDivider, NavDropdownItem, NavItem, NavLink, Navbar, NavbarBrand, NavbarCollapse, NavbarToggle } from '@/lib/client-react-bootstrap';
 import type { JSX } from 'react';
 
 export function Header(): JSX.Element {
     return (
-        <header>
+        <header className={styles['header']}>
             <Navbar className="bg-body-tertiary" expand="lg">
                 <Container fluid>
                     <NavbarBrand className="mb-0 h1">Tech Blog</NavbarBrand>

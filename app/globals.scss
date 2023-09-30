@@ -102,6 +102,10 @@
 a {
     color: inherit;
     text-decoration: none;
+
+    &:is(:active, :focus, :hover) {
+        text-decoration: underline;
+    }
 }
 
 main {
