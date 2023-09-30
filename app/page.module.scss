@@ -3,6 +3,7 @@
 .contents {
     flex: 1 0 auto;
     margin: 2rem 0;
+    width: clamp(300px, 50%, 100%);
     @media (width < 768px) {
         padding: 4rem;
     }
