@@ -7,7 +7,7 @@ import rehypeStringify from 'rehype-stringify';
 import { Blog, microCMSClient } from '@/lib/microcms-client';
 import { Feed } from 'feed';
 import { Fragment, createElement } from 'react';
-import { Image } from '@/app/components';
+import { Image } from '@/app/components/Image';
 import { processer } from 'microcms-richedit-processer';
 import { unified } from 'unified';
 

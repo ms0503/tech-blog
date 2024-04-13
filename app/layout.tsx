@@ -3,8 +3,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@/app/globals.scss';
 import Script from 'next/script';
-import { Col, Container, Row } from '@/lib/client-react-bootstrap';
-import { Footer, Header } from '@/app/components';
+import { Footer } from '@/app/components/Footer';
+import { Header } from '@/app/components/Header';
 // eslint-disable-next-line camelcase
 import { Noto_Sans_JP, Noto_Sans_Mono } from 'next/font/google';
 import type { JSX, ReactNode } from 'react';
@@ -84,11 +84,11 @@ export default function RootLayout({ children }: Props): JSX.Element {
     return (
         <html lang="ja" prefix="og: https://ogp.me/ns#" className={`${NotoSansJP.variable} ${NotoSansMono.variable}`} data-bs-theme="light">
             <body>
-                <Container fluid className="page-container">
-                    <Row><Col><Header /></Col></Row>
-                    <Row className="page-main"><Col><main>{children}</main></Col></Row>
-                    <Row><Col><Footer /></Col></Row>
-                </Container>
+                <div className="base-grid">
+                    <Header />
+                    <main>{children}</main>
+                    <Footer />
+                </div>
                 <Script async id="bs-auto-theme" strategy="afterInteractive" dangerouslySetInnerHTML={{
                     __html: `
                         const html = document.documentElement;

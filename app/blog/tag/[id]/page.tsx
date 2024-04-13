@@ -1,6 +1,8 @@
 'use strict';
 
 import Link from 'next/link';
+import styles from '../../blog.module.scss';
+import { ArrowUpCircle, FileEarmarkPlus } from 'react-bootstrap-icons';
 import { Blog, Tag, microCMSClient } from '@/lib/microcms-client';
 import { Stack } from '@/lib/client-react-bootstrap';
 import { iso2datetime } from '@/lib/time';
@@ -31,11 +33,15 @@ export default async function TagPage({ params: { id } }: Props): Promise<JSX.El
             <h1>「{tag.name}」タグの記事一覧</h1>
             <Stack gap={2}>
                 {blog.map(post => (
-                    <div key={post.id}>
-                        <h2><Link href={`/blog/${post.id}`}>{post.title}</Link></h2>
-                        <span>{iso2datetime(post.createdAt)}</span>
-                        <span>{iso2datetime(post.updatedAt)}</span>
-                    </div>
+                    <Link href={`/blog/${post.id}`} key={post.id}>
+                        <div className="tech-blog-card">
+                            <h2>{post.title}</h2>
+                            <div className={styles['datetime']}>
+                                <span><FileEarmarkPlus /> {iso2datetime(post.createdAt)}</span>
+                                <span><ArrowUpCircle /> {iso2datetime(post.updatedAt)}</span>
+                            </div>
+                        </div>
+                    </Link>
                 ))}
             </Stack>
         </>

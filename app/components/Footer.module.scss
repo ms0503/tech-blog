@@ -3,9 +3,16 @@
 .footer {
     display: block grid;
     grid-template: 1fr / 1fr;
+    padding: 0.5rem;
 
     .copyright {
         background-color: hsl(0deg, 0%, 10%);
-        font-size: 1rem;
+
+        small {
+            font-size: 0.5rem;
+            @media screen and (768px <= width) {
+                font-size: 1rem;
+            }
+        }
     }
 }

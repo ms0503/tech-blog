@@ -1,7 +1,7 @@
 'use strict';
 
 import Link from 'next/link';
-import { Stack } from '@/lib/client-react-bootstrap';
+import styles from '../blog.module.scss';
 import { Tag, microCMSClient } from '@/lib/microcms-client';
 import type { JSX } from 'react';
 import type { Metadata } from 'next';
@@ -23,9 +23,15 @@ export default async function Tags(): Promise<JSX.Element> {
     return (
         <>
             <h1>タグ</h1>
-            <Stack gap={2}>
-                {tags.map(tag => <Link key={tag.id} href={`/blog/tag/${tag.id}`}>{tag.name}</Link>)}
-            </Stack>
+            <div className={styles['list']}>
+                {tags.map(tag => (
+                    <Link href={`/blog/tag/${tag.id}`} key={tag.id}>
+                        <div className="tech-blog-card">
+                            {tag.name}
+                        </div>
+                    </Link>
+                ))}
+            </div>
         </>
     );
 }

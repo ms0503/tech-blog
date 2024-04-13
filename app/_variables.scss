@@ -1,25 +1,33 @@
 @charset "UTF-8";
 
-$max-width: 1100px;
-$border-radius: 12px;
 $font-mono: var(--noto-sans-mono), "Noto Sans Mono", ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
-$font-sans: "Helvetica Neue", "Helvetica", "Arial", var(--noto-sans-jp), "Noto Sans CJK JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+$font-sans: var(--noto-sans-jp), "Helvetica Neue", "Helvetica", "Arial", "Noto Sans CJK JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
 $font-serif: "Times New Roman", "YuMincho", "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif;
 $foreground-color-light: 0deg, 0%, 10%;
 $foreground-color-dark: 0deg, 0%, 90%;
-$background-color-light: 0deg, 0%, 85%;
-$background-color-dark: 0deg, 0%, 10%;
+$background-start-color-light: 0deg, 0%, 85%;
+$background-start-color-dark: 0deg, 0%, 10%;
+$background-end-color-light: 0deg, 0%, 90%;
+$background-end-color-dark: 0deg, 0%, 10%;
+$card-color-light: 200deg, 5%, 80%;
+$card-color-dark: 0deg, 0%, 25%;
+$card-border-color-light: 200deg, 0%, 70%;
+$card-border-color-dark: 0deg, 0%, 60%;
 
 :root {
-    --max-width: #{$max-width};
-    --border-radius: #{$border-radius};
     --font-mono: #{$font-mono};
     --font-sans: #{$font-sans};
     --font-serif: #{$font-serif};
     --foreground-color: #{$foreground-color-light};
-    --background-color: #{$background-color-light};
+    --background-start-color: #{$background-start-color-light};
+    --background-end-color: #{$background-end-color-light};
+    --card-color: #{$card-color-light};
+    --card-border-color: #{$card-border-color-light};
     @media (prefers-color-scheme: dark) {
         --foreground-color: #{$foreground-color-dark};
-        --background-color: #{$background-color-dark};
+        --background-start-color: #{$background-start-color-dark};
+        --background-end-color: #{$background-end-color-dark};
+        --card-color: #{$card-color-dark};
+        --card-border-color: #{$card-border-color-dark};
     }
 }

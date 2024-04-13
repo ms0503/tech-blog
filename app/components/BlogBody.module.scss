@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+.toc {
+    background-color: hsl(var(--card-color));
+    border: 2px solid hsl(var(--card-border-color));
+    border-radius: 1rem;
+    padding: 1rem;
+    width: fit-content;
+    align-self: center;
+}
+
+.contents {
+    flex: 1 0 auto;
+    margin: 2rem 0;
+
+    h1:is(p + h1) {
+        margin-top: 2rem;
+    }
+}

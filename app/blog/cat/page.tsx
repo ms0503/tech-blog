@@ -1,8 +1,8 @@
 'use strict';
 
 import Link from 'next/link';
+import styles from '../blog.module.scss';
 import { Category, microCMSClient } from '@/lib/microcms-client';
-import { Stack } from '@/lib/client-react-bootstrap';
 import type { JSX } from 'react';
 import type { Metadata } from 'next';
 
@@ -23,9 +23,15 @@ export default async function Categories(): Promise<JSX.Element> {
     return (
         <>
             <h1>カテゴリー</h1>
-            <Stack gap={2}>
-                {cats.map(cat => <Link key={cat.id} href={`/blog/cat/${cat.id}`}>{cat.name}</Link>)}
-            </Stack>
+            <div className={styles['list']}>
+                {cats.map(cat => (
+                    <Link href={`/blog/cat/${cat.id}`} key={cat.id}>
+                        <div className="tech-blog-card">
+                            {cat.name}
+                        </div>
+                    </Link>
+                ))}
+            </div>
         </>
     );
 }
