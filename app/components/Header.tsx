@@ -1,7 +1,7 @@
 'use strict';
 
 import styles from '@/app/components/Header.module.scss';
-import { Container, Nav, NavDropdown, NavDropdownDivider, NavDropdownItem, NavItem, NavLink, Navbar, NavbarBrand, NavbarCollapse, NavbarToggle } from '@/lib/client-react-bootstrap';
+import { Container, Nav, Navbar, NavbarBrand, NavbarCollapse, NavbarToggle, NavDropdown, NavDropdownDivider, NavDropdownItem, NavItem, NavLink } from '@/lib/client-react-bootstrap';
 import type { JSX } from 'react';
 
 export function Header(): JSX.Element {

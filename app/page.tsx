@@ -1,8 +1,8 @@
 'use strict';
 
 import styles from '@/app/page.module.scss';
-import type { JSX } from 'react';
 import type { Metadata } from 'next';
+import type { JSX } from 'react';
 
 export const metadata: Metadata = {
     description: 'STM32系・Web系の技術ブログ',

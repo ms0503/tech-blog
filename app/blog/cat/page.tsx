@@ -1,10 +1,10 @@
 'use strict';
 
-import Link from 'next/link';
 import styles from '../blog.module.scss';
 import { Category, microCMSClient } from '@/lib/microcms-client';
-import type { JSX } from 'react';
+import Link from 'next/link';
 import type { Metadata } from 'next';
+import type { JSX } from 'react';
 
 export const metadata: Metadata = {
     description: 'STM32系・Web系の技術ブログ',

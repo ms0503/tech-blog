@@ -1,18 +1,18 @@
 'use strict';
 
-import Link from 'next/link';
-import rehypeParse from 'rehype-parse';
-import rehypeReact from 'rehype-react';
 import styles from './BlogBody.module.scss';
-import { Fragment, JSX, createElement } from 'react';
 import { Image } from '@/app/components/Image';
 import { Stack } from '@/lib/client-react-bootstrap';
 import { createTableOfContents, processer } from 'microcms-richedit-processer';
+import Link from 'next/link';
+import { createElement, Fragment, JSX } from 'react';
+import rehypeParse from 'rehype-parse';
+import rehypeReact from 'rehype-react';
 import { unified } from 'unified';
 
 type Props = {
     body: string
-}
+};
 
 export async function BlogBody({ body }: Props): Promise<JSX.Element> {
     const tableOfContents = createTableOfContents(body);

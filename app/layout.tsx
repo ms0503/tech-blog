@@ -2,13 +2,13 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@/app/globals.scss';
-import Script from 'next/script';
 import { Footer } from '@/app/components/Footer';
 import { Header } from '@/app/components/Header';
+import { Metadata, Viewport } from 'next';
 // eslint-disable-next-line camelcase
 import { Noto_Sans_JP, Noto_Sans_Mono } from 'next/font/google';
+import Script from 'next/script';
 import type { JSX, ReactNode } from 'react';
-import type { Metadata } from 'next';
 
 const NotoSansJP = Noto_Sans_JP({
     display: 'swap',
@@ -51,6 +51,18 @@ export const metadata: Metadata = {
         type: 'article'
     },
     publisher: 'Sora Tonami',
+    title: {
+        absolute: 'ms0503 Tech Blog',
+        template: '%s - ms0503 Tech Blog'
+    },
+    twitter: {
+        card: 'summary',
+        site: '@ms0503_'
+    }
+};
+
+export const viewport: Viewport = {
+    initialScale: 1,
     themeColor: [
         {
             color: '#1a1a1a',
@@ -61,19 +73,8 @@ export const metadata: Metadata = {
             media: '(prefers-color-scheme: light)'
         }
     ],
-    title: {
-        absolute: 'ms0503 Tech Blog',
-        template: '%s - ms0503 Tech Blog'
-    },
-    twitter: {
-        card: 'summary',
-        site: '@ms0503_'
-    },
-    viewport: {
-        initialScale: 1,
-        viewportFit: 'cover',
-        width: 'device-width'
-    }
+    viewportFit: 'cover',
+    width: 'device-width'
 };
 
 type Props = {

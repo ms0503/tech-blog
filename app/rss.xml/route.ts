@@ -1,7 +1,7 @@
 'use strict';
 
-import { NextResponse } from 'next/server';
 import { generateRssXml } from '@/lib/feed';
+import { NextResponse } from 'next/server';
 
 export async function GET(): Promise<NextResponse> {
     const xml: string = await generateRssXml();

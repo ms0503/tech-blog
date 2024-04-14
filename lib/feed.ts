@@ -1,14 +1,14 @@
 'use strict';
 
+import { Image } from '@/app/components/Image';
+import { Blog, microCMSClient } from '@/lib/microcms-client';
+import { Feed } from 'feed';
+import { processer } from 'microcms-richedit-processer';
 import Link from 'next/link';
+import { createElement, Fragment } from 'react';
 import rehypeParse from 'rehype-parse';
 import rehypeReact from 'rehype-react';
 import rehypeStringify from 'rehype-stringify';
-import { Blog, microCMSClient } from '@/lib/microcms-client';
-import { Feed } from 'feed';
-import { Fragment, createElement } from 'react';
-import { Image } from '@/app/components/Image';
-import { processer } from 'microcms-richedit-processer';
 import { unified } from 'unified';
 
 type Author = {
@@ -34,13 +34,13 @@ async function generateFeed(): Promise<Feed> {
     const date: Date = new Date();
     const author: Author = {
         email: 'ms0503@outlook.com',
-        link: 'https://tech-blog-ms0503.vercel.app',
+        link: 'https://ms0503-tech-blog.vercel.app',
         name: 'Sora Tonami'
     };
     const feed: Feed = new Feed({
         author,
-        copyright: 'Copyright © 2023 Sora Tonami. All rights reserved.',
-        description: 'STM32系・Web系の技術ブログ',
+        copyright: `Copyright © 2023-${date.getFullYear()} Sora Tonami. All rights reserved.`,
+        description: 'JK(情報系高専生)の技術ブログ',
         feedLinks: {
             atom: `${baseUrl}/atom.xml`,
             json: `${baseUrl}/feed.json`,
@@ -56,9 +56,12 @@ async function generateFeed(): Promise<Feed> {
     const blog: Blog[] = (await microCMSClient.getList<Blog>({
         endpoint: 'blogs'
     })).contents;
-    if(blog.length === 0) return feed;
+    if(blog.length === 0) {
+        return feed;
+    }
     for(const post of blog) {
-        const content: string = unified().use(rehypeParse, {
+        const url: string = `${baseUrl}/blog/${post.id}`;
+        const content = (await unified().use(rehypeParse, {
             fragment: true
             // @ts-ignore
         }).use(rehypeReact, {
@@ -68,7 +71,7 @@ async function generateFeed(): Promise<Feed> {
                 img: Image
             },
             createElement
-        }).use(rehypeStringify).processSync(await processer(post.content, {
+        }).use(rehypeStringify).process(await processer(post.content, {
             code: {
                 enabled: true
             },
@@ -78,8 +81,7 @@ async function generateFeed(): Promise<Feed> {
             img: {
                 enabled: true
             }
-        })).result as string;
-        const url: string = `${baseUrl}/blog/${post.id}`;
+        }))).result as string;
         feed.addItem({
             content,
             date: new Date(post.updatedAt),

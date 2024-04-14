@@ -1,13 +1,13 @@
 'use strict';
 
 import styles from '../blog.module.scss';
-import { ArrowUpCircle, Box, FileEarmarkPlus, Tags } from 'react-bootstrap-icons';
-import { Blog, microCMSClient } from '@/lib/microcms-client';
 import { BlogBody } from '@/app/components/BlogBody';
 import { Col, Container, Row } from '@/lib/client-react-bootstrap';
+import { Blog, microCMSClient } from '@/lib/microcms-client';
 import { iso2datetime } from '@/lib/time';
-import type { JSX } from 'react';
+import { ArrowUpCircle, Box, FileEarmarkPlus, Tags } from 'react-bootstrap-icons';
 import type { Metadata, ResolvingMetadata } from 'next';
+import type { JSX } from 'react';
 
 type Params = {
     id: string
@@ -46,7 +46,9 @@ export async function generateMetadata({ params: { id } }: Props, parent: Resolv
         endpoint: 'blogs'
     });
     const images = (await parent).openGraph?.images ?? [];
-    if(eyecatch?.default_image.url) images.unshift(eyecatch?.default_image.url);
+    if(eyecatch?.default_image.url) {
+        images.unshift(eyecatch?.default_image.url);
+    }
     return {
         description,
         openGraph: {

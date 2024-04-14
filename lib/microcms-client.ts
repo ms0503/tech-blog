@@ -1,6 +1,6 @@
 'use strict';
 
-import { MicroCMSImage, MicroCMSListContent, createClient } from 'microcms-js-sdk';
+import { createClient, MicroCMSImage, MicroCMSListContent } from 'microcms-js-sdk';
 
 export const microCMSClient = createClient({
     apiKey: process.env['MICROCMS_API_KEY']!,
@@ -11,11 +11,11 @@ export const microCMSClient = createClient({
 export interface MicroCMSApiImage {
     default_image: MicroCMSImage;
     art_directive_image: {
-        fieldId: 'art_directive_image';
-        default_image: MicroCMSImage;
-        md_image?: MicroCMSImage;
-        lg_image?: MicroCMSImage;
-        '2xl_image'?: MicroCMSImage;
+        'fieldId': 'art_directive_image',
+        'default_image': MicroCMSImage,
+        'md_image'?: MicroCMSImage,
+        'lg_image'?: MicroCMSImage,
+        '2xl_image'?: MicroCMSImage
     };
 }
 

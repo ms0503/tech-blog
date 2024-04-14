@@ -1,10 +1,9 @@
 'use strict';
 
-//import Head from 'next/head';
-import NextImage, { ImageLoaderProps, ImageProps } from 'next/image';
-import { DetailedHTMLProps, JSX, SourceHTMLAttributes, useContext, useMemo } from 'react';
 import { ImageConfigComplete, imageConfigDefault } from 'next/dist/shared/lib/image-config';
 import { ImageConfigContext } from 'next/dist/shared/lib/image-config-context.shared-runtime';
+import NextImage, { ImageLoaderProps, ImageProps } from 'next/image';
+import { DetailedHTMLProps, JSX, SourceHTMLAttributes, useContext, useMemo } from 'react';
 
 type ArtDirective = {
     src: string,
@@ -77,14 +76,9 @@ export function Image({ alt, artDirectives, height, preloadFormat = 'image/webp'
     );
 }
 
-function Sources({ /*preloadLinks, priority, sizes = '100vw', */sources }: SourcesProps): JSX.Element {
+function Sources({ sources }: SourcesProps): JSX.Element {
     return (
         <>
-            {/*priority && preloadLinks.map(({ media, srcSet, type }) => (
-                <Head key={srcSet}>
-                    <link key={`__nimg-${srcSet}${media}${sizes}`} rel="preload" as="image" type={type} media={media} imageSrcSet={srcSet} imageSizes={sizes} />
-                </Head>
-            ))*/}
             {sources.map(sourceProps => <source key={sourceProps.srcSet} {...sourceProps} />)}
         </>
     );
@@ -99,14 +93,20 @@ function loader({ format, quality, src, width }: ImageLoaderProps & { format?: s
     const params: URLSearchParams = url.searchParams;
     params.set('fit', params.get('fit') || 'max');
     params.set('w', params.get('w') || width.toString());
-    if(quality) params.set('q', quality.toString());
-    if(format) params.set('fm', format);
+    if(quality) {
+        params.set('q', quality.toString());
+    }
+    if(format) {
+        params.set('fm', format);
+    }
     return url.href;
 }
 
 function getSources({ artDirectives, formats = ['image/avif', 'image/webp'], deviceSizes, height, preloadFormat, quality = 75, src, width }: GetSourcesArgs): GetSourcesResult {
     if(artDirectives) {
-        if(!Array.isArray(artDirectives)) throw Error('`artDirectives`には配列を指定してください。');
+        if(!Array.isArray(artDirectives)) {
+            throw Error('`artDirectives`には配列を指定してください。');
+        }
         const artDirectivesSources = artDirectives.map(({ height, media, src, width }) => [
             ...formats.map(format => ({
                 height,
@@ -142,18 +142,20 @@ function getSources({ artDirectives, formats = ['image/avif', 'image/webp'], dev
             preloadLinks: [...artDirectivesPreloadLinks, defaultPreloadLink],
             sources: [...artDirectivesSources, ...defaultSources].flat()
         };
-    } else return {
-        preloadLinks: [
-            {
-                srcSet: getSrcSet(src, deviceSizes, quality, getFormatParam(preloadFormat)),
-                type: preloadFormat
-            }
-        ],
-        sources: formats.map(format => ({
-            srcSet: getSrcSet(src, deviceSizes, quality, format),
-            type: format
-        }))
-    };
+    } else {
+        return {
+            preloadLinks: [
+                {
+                    srcSet: getSrcSet(src, deviceSizes, quality, getFormatParam(preloadFormat)),
+                    type: preloadFormat
+                }
+            ],
+            sources: formats.map(format => ({
+                srcSet: getSrcSet(src, deviceSizes, quality, format),
+                type: format
+            }))
+        };
+    }
 }
 
 function getFormatParam(format: string): string {

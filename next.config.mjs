@@ -11,11 +11,7 @@ const nextConfig = {
     },
     experimental: {
         esmExternals: true,
-        optimizeCss: true,
-        serverComponentsExternalPackages: [
-            'react-bootstrap',
-            'react-bootstrap-icons'
-        ]
+        optimizeCss: true
     },
     generateEtags: false,
     headers: async () => [
