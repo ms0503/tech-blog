@@ -62,7 +62,6 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-    initialScale: 1,
     themeColor: [
         {
             color: '#1a1a1a',
@@ -73,8 +72,7 @@ export const viewport: Viewport = {
             media: '(prefers-color-scheme: light)'
         }
     ],
-    viewportFit: 'cover',
-    width: 'device-width'
+    viewportFit: 'cover'
 };
 
 type Props = {
