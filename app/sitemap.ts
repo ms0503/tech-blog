@@ -1,6 +1,6 @@
 'use strict';
 
-import { Blog, microCMSClient } from '@/lib/microcms-client';
+import { Blog, Category, microCMSClient, Tag } from '@/lib/microcms-client';
 import type { MetadataRoute } from 'next';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -31,17 +31,37 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             url: `${baseUrl}/blog/tag`
         }
     ];
-    const blog: Blog[] = (await microCMSClient.getList<Blog>({
+    const blogs = (await microCMSClient.getList<Blog>({
         endpoint: 'blogs'
     })).contents;
-    const dynamicPaths: MetadataRoute.Sitemap = blog.map(post => ({
+    const categories = (await microCMSClient.getList<Category>({
+        endpoint: 'categories'
+    })).contents;
+    const tags = (await microCMSClient.getList<Tag>({
+        endpoint: 'tags'
+    })).contents;
+    const blogPaths: MetadataRoute.Sitemap = blogs.map(post => ({
         changeFrequency: 'weekly',
         lastModified: post.updatedAt,
         priority: 0.7,
         url: `${baseUrl}/blog/${post.id}`
     }));
+    const categoryPaths: MetadataRoute.Sitemap = categories.map(cat => ({
+        changeFrequency: 'monthly',
+        lastModified: cat.updatedAt,
+        priority: 0.7,
+        url: `${baseUrl}/cat/${cat.id}`
+    }));
+    const tagPaths: MetadataRoute.Sitemap = tags.map(tag => ({
+        changeFrequency: 'monthly',
+        lastModified: tag.updatedAt,
+        priority: 0.7,
+        url: `${baseUrl}/tag/${tag.id}`
+    }));
     return [
         ...staticPaths,
-        ...dynamicPaths
+        ...blogPaths,
+        ...categoryPaths,
+        ...tagPaths
     ];
 }
