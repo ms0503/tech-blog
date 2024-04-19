@@ -21,7 +21,7 @@ export default function Home(): JSX.Element {
             <div className={styles['contents']}>
                 <p>私が日々の作業で使ってる色々な物のtipsとかを書いていくブログだよ。</p>
                 <p>基本的に怪文書めいた文体なので苦手な方は容赦なくブラウザバックして、どうぞ。</p>
-                <p>あと記事自体は<Link href="/licenses/fdl">FDL 1.3</Link>、記事中のソースは<Link href="/licenses/mit">MITライセンス</Link>とするので煮るなり焼くなりお好きにどうぞ。</p>
+                <p>あと記事自体は<Link href="/licenses/fdl">FDL 1.3</Link>、記事中のソースは<Link href="/licenses/mit/">MITライセンス</Link>とするので煮るなり焼くなりお好きにどうぞ。</p>
             </div>
             <div className={styles['contents']}>
                 Copyright (C)  2023-{date.getFullYear()}  Sora Tonami.
