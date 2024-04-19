@@ -2,6 +2,7 @@
 
 import styles from '@/app/components/Header.module.scss';
 import { Container, Nav, Navbar, NavbarBrand, NavbarCollapse, NavbarToggle, NavDropdown, NavDropdownDivider, NavDropdownItem, NavItem, NavLink } from '@/lib/client-react-bootstrap';
+import { Github, Twitter } from 'react-bootstrap-icons';
 import type { JSX } from 'react';
 
 export function Header(): JSX.Element {
@@ -23,6 +24,17 @@ export function Header(): JSX.Element {
                                     <NavDropdownItem href="/blog/cat">カテゴリー</NavDropdownItem>
                                     <NavDropdownItem href="/blog/tag">タグ</NavDropdownItem>
                                 </NavDropdown>
+                            </NavItem>
+                        </Nav>
+                        <Nav className="mw-auto mb-2 mb-lg-0">
+                            <NavItem>
+                                <NavLink href="https://github.com/ms0503"><Github /> GitHub</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="https://twitter.com/ms0503"><Twitter /> Twitter</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="https://misskey.io/@ms0503">Misskey.io</NavLink>
                             </NavItem>
                         </Nav>
                     </NavbarCollapse>
