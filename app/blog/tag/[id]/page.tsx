@@ -6,6 +6,7 @@ import { Blog, microCMSClient, Tag } from '@/lib/microcms-client';
 import { iso2datetime } from '@/lib/time';
 import Link from 'next/link';
 import { ArrowUpCircle, FileEarmarkPlus } from 'react-bootstrap-icons';
+import type { PropsWithParams } from '@/lib/types';
 import type { Metadata } from 'next';
 import type { JSX } from 'react';
 
@@ -13,11 +14,7 @@ type Params = {
     id: string
 };
 
-type Props = {
-    params: Params
-};
-
-export default async function TagPage({ params: { id } }: Props): Promise<JSX.Element> {
+export default async function TagPage({ params: { id } }: PropsWithParams<Params>): Promise<JSX.Element> {
     const tag: Tag = await microCMSClient.get<Tag>({
         contentId: id,
         endpoint: 'tags'
@@ -48,7 +45,7 @@ export default async function TagPage({ params: { id } }: Props): Promise<JSX.El
     );
 }
 
-export async function generateMetadata({ params: { id } }: Props): Promise<Metadata> {
+export async function generateMetadata({ params: { id } }: PropsWithParams<Params>): Promise<Metadata> {
     const { name }: Tag = await microCMSClient.get<Tag>({
         contentId: id,
         endpoint: 'tags'

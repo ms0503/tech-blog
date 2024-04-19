@@ -4,11 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '@/app/globals.scss';
 import { Footer } from '@/app/components/Footer';
 import { Header } from '@/app/components/Header';
+import { author, description, siteName } from '@/lib/info';
 import { Metadata, Viewport } from 'next';
 // eslint-disable-next-line camelcase
 import { Noto_Sans_JP, Noto_Sans_Mono } from 'next/font/google';
 import Script from 'next/script';
-import type { JSX, ReactNode } from 'react';
+import type { JSX, PropsWithChildren } from 'react';
 
 const NotoSansJP = Noto_Sans_JP({
     display: 'swap',
@@ -30,11 +31,11 @@ const NotoSansMono = Noto_Sans_Mono({
 
 export const metadata: Metadata = {
     authors: {
-        name: 'Sora Tonami',
-        url: process.env['BASE_URL']
+        name: author.name,
+        url: author.link
     },
-    creator: 'Sora Tonami',
-    description: 'STM32系・Web系の技術ブログ',
+    creator: author.name,
+    description,
     formatDetection: {
         address: false,
         date: false,
@@ -45,15 +46,15 @@ export const metadata: Metadata = {
     generator: 'Next.js',
     metadataBase: new URL(process.env['BASE_URL']!),
     openGraph: {
-        description: 'STM32系・Web系の技術ブログ',
-        siteName: 'ms0503 Tech Blog',
+        description,
+        siteName,
         title: '',
         type: 'article'
     },
-    publisher: 'Sora Tonami',
+    publisher: author.name,
     title: {
-        absolute: 'ms0503 Tech Blog',
-        template: '%s - ms0503 Tech Blog'
+        absolute: siteName,
+        template: `%s - ${siteName}`
     },
     twitter: {
         card: 'summary',
@@ -75,11 +76,7 @@ export const viewport: Viewport = {
     viewportFit: 'cover'
 };
 
-type Props = {
-    children: ReactNode
-};
-
-export default function RootLayout({ children }: Props): JSX.Element {
+export default function RootLayout({ children }: PropsWithChildren): JSX.Element {
     return (
         <html lang="ja" prefix="og: https://ogp.me/ns#" className={`${NotoSansJP.variable} ${NotoSansMono.variable}`} data-bs-theme="light">
             <body>

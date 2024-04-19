@@ -6,19 +6,15 @@ import { Col, Container, Row } from '@/lib/client-react-bootstrap';
 import { Blog, microCMSClient } from '@/lib/microcms-client';
 import { iso2datetime } from '@/lib/time';
 import { ArrowUpCircle, Box, FileEarmarkPlus, Tags } from 'react-bootstrap-icons';
-import type { Metadata, ResolvingMetadata } from 'next';
-import type { JSX } from 'react';
+import type { PropsWithParams } from '@/lib/types';
+import type { ResolvingMetadata } from 'next';
 
 type Params = {
     id: string
 };
 
-type Props = {
-    params: Params
-};
-
-export default async function BlogPage({ params: { id } }: Props): Promise<JSX.Element> {
-    const post: Blog = await microCMSClient.get<Blog>({
+export default async function BlogPage({ params: { id } }: PropsWithParams<Params>) {
+    const post = await microCMSClient.get<Blog>({
         contentId: id,
         endpoint: 'blogs'
     });
@@ -40,8 +36,8 @@ export default async function BlogPage({ params: { id } }: Props): Promise<JSX.E
     );
 }
 
-export async function generateMetadata({ params: { id } }: Props, parent: ResolvingMetadata): Promise<Metadata> {
-    const { description, eyecatch, title }: Blog = await microCMSClient.get<Blog>({
+export async function generateMetadata({ params: { id } }: PropsWithParams<Params>, parent: ResolvingMetadata) {
+    const { description, eyecatch, title } = await microCMSClient.get<Blog>({
         contentId: id,
         endpoint: 'blogs'
     });
@@ -60,11 +56,11 @@ export async function generateMetadata({ params: { id } }: Props, parent: Resolv
     };
 }
 
-export async function generateStaticParams(): Promise<Params[]> {
-    const blog: Blog[] = (await microCMSClient.getList<Blog>({
+export async function generateStaticParams() {
+    const blogs = (await microCMSClient.getList<Blog>({
         endpoint: 'blogs'
     })).contents;
-    return blog.map(post => ({
+    return blogs.map(post => ({
         id: post.id
     }));
 }

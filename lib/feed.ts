@@ -1,6 +1,7 @@
 'use strict';
 
 import { Image } from '@/app/components/Image';
+import { author, description, getCopyright } from '@/lib/info';
 import { Blog, microCMSClient } from '@/lib/microcms-client';
 import { Feed } from 'feed';
 import { processer } from 'microcms-richedit-processer';
@@ -10,12 +11,6 @@ import rehypeParse from 'rehype-parse';
 import rehypeReact from 'rehype-react';
 import rehypeStringify from 'rehype-stringify';
 import { unified } from 'unified';
-
-type Author = {
-    email: string,
-    link: string,
-    name: string
-};
 
 export async function generateAtomXml(): Promise<string> {
     return (await generateFeed()).atom1();
@@ -32,15 +27,10 @@ export async function generateRssXml(): Promise<string> {
 async function generateFeed(): Promise<Feed> {
     const baseUrl: string = process.env['BASE_URL']!;
     const date: Date = new Date();
-    const author: Author = {
-        email: 'ms0503@outlook.com',
-        link: 'https://ms0503-tech-blog.vercel.app',
-        name: 'Sora Tonami'
-    };
     const feed: Feed = new Feed({
         author,
-        copyright: `Copyright © 2023-${date.getFullYear()} Sora Tonami. All rights reserved.`,
-        description: 'JK(情報系高専生)の技術ブログ',
+        copyright: getCopyright(),
+        description,
         feedLinks: {
             atom: `${baseUrl}/atom.xml`,
             json: `${baseUrl}/feed.json`,

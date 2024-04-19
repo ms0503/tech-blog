@@ -6,23 +6,18 @@ import { Blog, Category, microCMSClient } from '@/lib/microcms-client';
 import { iso2datetime } from '@/lib/time';
 import Link from 'next/link';
 import { ArrowUpCircle, FileEarmarkPlus } from 'react-bootstrap-icons';
-import type { Metadata } from 'next';
-import type { JSX } from 'react';
+import type { PropsWithParams } from '@/lib/types';
 
 type Params = {
     id: string
 };
 
-type Props = {
-    params: Params
-};
-
-export default async function CategoryPage({ params: { id } }: Props): Promise<JSX.Element> {
-    const cat: Category = await microCMSClient.get<Category>({
+export default async function CategoryPage({ params: { id } }: PropsWithParams<Params>) {
+    const cat = await microCMSClient.get<Category>({
         contentId: id,
         endpoint: 'categories'
     });
-    const blog: Blog[] = (await microCMSClient.getList<Blog>({
+    const blogs = (await microCMSClient.getList<Blog>({
         endpoint: 'blogs',
         queries: {
             filters: `category[equals]${id}`
@@ -32,7 +27,7 @@ export default async function CategoryPage({ params: { id } }: Props): Promise<J
         <>
             <h1>「{cat.name}」カテゴリーの記事一覧</h1>
             <Stack gap={2}>
-                {blog.map(post => (
+                {blogs.map(post => (
                     <Link href={`/blog/${post.id}`} key={post.id}>
                         <div className="tech-blog-card">
                             <h2>{post.title}</h2>
@@ -48,15 +43,13 @@ export default async function CategoryPage({ params: { id } }: Props): Promise<J
     );
 }
 
-export async function generateMetadata({ params: { id } }: Props): Promise<Metadata> {
-    const { name }: Category = await microCMSClient.get<Category>({
+export async function generateMetadata({ params: { id } }: PropsWithParams<Params>) {
+    const { name } = await microCMSClient.get<Category>({
         contentId: id,
         endpoint: 'categories'
     });
     return {
-        description: 'STM32系・Web系の技術ブログ',
         openGraph: {
-            description: 'STM32系・Web系の技術ブログ',
             title: `「${name}」カテゴリー`,
             type: 'website'
         },
